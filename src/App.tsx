@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { Button, Stack } from '@mui/material';
+import MuiTypography from './components/MuiTypography';
+import MuiButton from './components/MuiButton';
+import MuiTextField from './components/MuiTextField';
 
 function App() {
+  const [link, setLink] = useState("")
+
+  const handleClick = (str: string) => {
+    setLink(str)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Stack direction={'row'} spacing={2}>
+        <Button variant='contained' onClick={() => handleClick("typography")}>Typography</Button>
+        <Button variant='contained' onClick={() => handleClick("button")}>Button</Button>
+        <Button variant='contained' onClick={() => handleClick("textField")}>Text Field</Button>
+      </Stack>
+      {
+        link === "typography" ?
+          <MuiTypography /> : null
+      }
+      {
+        link === "button" ?
+          <MuiButton /> : null
+      }
+      {
+        link === "textField"
+          ? <MuiTextField /> : null
+      }
+
     </div>
   );
 }
